@@ -61,97 +61,63 @@ var html = "";
 // eng_to_jap_set["morning"] = 'asa';
 
 
-$( document ).ready(function() {
-          console.log( "ready!" );
-          $.get("database.php", function(data, status){
-             eng_to_jap_set = $.parseJSON(data);
-             console.log(eng_to_jap_set);
-          });
-}); 
 
-//TODO: Comment if don't want to randomize
-for (var eng in eng_to_jap_set) {
-	randomizedKeyArray.push(eng);
-}
+console.log( "ready!" );
 
-shuffleArray(randomizedKeyArray);
-//End of Randomize
-
-for(var ndx=0; ndx<randomizedKeyArray.length; ndx++){
-  	html += "<div class='container'>";
-  	html += "<div class='row'>";
-
-  	html += "<div class='col-sm-3'>";
-  	html += "<b>"+(ndx+1)+".</b> "+randomizedKeyArray[ndx];
-  	html += "</div>";
-
-  	html +=  "<div class='col-sm-3'>";
+$.get("database.php", function(data, status){
+   eng_to_jap_set = $.parseJSON(data);
+   console.log(eng_to_jap_set);
 
 
-  	html += "<input type='text' id='ans"+ndx+"' class='ans' onkeypress='handleKeyPress(event, "+ndx+")' />";
 
-  	/**TODO: Uncomment for answers**/
-  	// html += "<input type='text' id='ans"+ndx+"' class='ans' onkeypress='handleKeyPress(event, "+ndx+")' value='"+eng_to_jap_set[randomizedKeyArray[ndx]]+"'/>";
+      //TODO: Comment if don't want to randomize
+      for (var eng in eng_to_jap_set) {
+        randomizedKeyArray.push(eng);
+      }
+
+      shuffleArray(randomizedKeyArray);
+      //End of Randomize
+
+      for(var ndx=0; ndx<randomizedKeyArray.length; ndx++){
+          html += "<div class='container'>";
+          html += "<div class='row'>";
+
+          html += "<div class='col-sm-3'>";
+          html += "<b>"+(ndx+1)+".</b> "+randomizedKeyArray[ndx];
+          html += "</div>";
+
+          html +=  "<div class='col-sm-3'>";
 
 
-  	html += "</div>";
+          html += "<input type='text' id='ans"+ndx+"' class='ans' onkeypress='handleKeyPress(event, "+ndx+")' />";
 
-  	html +=  "<div class='col-sm-3'>";
-  	html += "<button id='checkBtn"+ndx+"'class='ans_btn' onclick=\"checkItem("+ndx+",'"+randomizedKeyArray[ndx]+"')\" tabindex='-1'>Check</button>";
-  	html += "</div>";
-
-  	html +=  "<div class='col-sm-3'>";
-  	html += "<img id='result"+ndx+"' class='resultImg'/>";
-  	html += "</div>";
+          /**TODO: Uncomment for answers**/
+          // html += "<input type='text' id='ans"+ndx+"' class='ans' onkeypress='handleKeyPress(event, "+ndx+")' value='"+eng_to_jap_set[randomizedKeyArray[ndx]]+"'/>";
 
 
-  	html += "</div>";
-  	html += "</div>";
-}
+          html += "</div>";
 
-$('.container').html(html);
+          html +=  "<div class='col-sm-3'>";
+          html += "<button id='checkBtn"+ndx+"'class='ans_btn' onclick=\"checkItem("+ndx+",'"+randomizedKeyArray[ndx]+"')\" tabindex='-1'>Check</button>";
+          html += "</div>";
 
-function checkItem(ansNo, key){
-	var ans = $("#ans"+ansNo).val();
-	var img = "img/";
-	if(ans == eng_to_jap_set[key]){
-		img += "check.png";
-		$("#ans"+(ansNo+1)).focus();
-		//Set image here so it will be counted by isAllAnswered()
-		$("#result"+ansNo).attr('src',img);
-		isAllAnswered();
-	}else{
-		img += "ex.png";
-	}
-	$("#result"+ansNo).attr('src',img);
-}
+          html +=  "<div class='col-sm-3'>";
+          html += "<img id='result"+ndx+"' class='resultImg'/>";
+          html += "</div>";
 
-function isAllAnswered(){
-	var totalItems = $('.resultImg').length;
-	var correctItems = 0;
-	$('.resultImg').each(function(){
-		if($(this).attr('src')=="img/check.png"){
-			correctItems++;
-		}
-	});
-	if(totalItems == correctItems){
-		$.APP.pauseTimer();
-		alert("Congratulations!!!");
-	}
-}
 
-function checkAll(){
-	$(".ans_btn").each(function () {
-        $(this).trigger('click');
-    });
-}
+          html += "</div>";
+          html += "</div>";
+      }
 
-function handleKeyPress(e, ansNo){
- 	var key=e.keyCode || e.which; 
-  	if (key==13){//Enter
-     	$("#checkBtn"+ansNo).trigger('click');
- 	}
-}
+      $('.container').html(html);
+
+
+
+
+});
+
+
 
 /**
  * Randomize array element order in-place.
@@ -165,4 +131,46 @@ function shuffleArray(array) {
         array[j] = temp;
     }
     return array;
+}
+
+function checkItem(ansNo, key){
+  var ans = $("#ans"+ansNo).val();
+  var img = "img/";
+  if(ans == eng_to_jap_set[key]){
+    img += "check.png";
+    $("#ans"+(ansNo+1)).focus();
+    //Set image here so it will be counted by isAllAnswered()
+    $("#result"+ansNo).attr('src',img);
+    isAllAnswered();
+  }else{
+    img += "ex.png";
+  }
+  $("#result"+ansNo).attr('src',img);
+}
+
+function isAllAnswered(){
+  var totalItems = $('.resultImg').length;
+  var correctItems = 0;
+  $('.resultImg').each(function(){
+    if($(this).attr('src')=="img/check.png"){
+      correctItems++;
+    }
+  });
+  if(totalItems == correctItems){
+    $.APP.pauseTimer();
+    alert("Congratulations!!!");
+  }
+}
+
+function checkAll(){
+  $(".ans_btn").each(function () {
+        $(this).trigger('click');
+    });
+}
+
+function handleKeyPress(e, ansNo){
+  var key=e.keyCode || e.which; 
+    if (key==13){//Enter
+      $("#checkBtn"+ansNo).trigger('click');
+  }
 }
