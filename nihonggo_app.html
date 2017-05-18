@@ -1,0 +1,52 @@
+<html>
+<head>
+	<title>Heinrich Woogue's Nihonggo App</title>
+	<link rel="stylesheet" href="css/bootstrap.3.3.7.min.css">
+	<link rel="stylesheet" href="css/nihonggo_app.css">
+</head>
+
+<body>
+	<h1 class="header">Nigonggo App</h1>
+
+	<div id="stop_watch_container">
+	    <h2>Stopwatch</h2>
+	    <span id="sw_h">00</span>:
+	    <span id="sw_m">00</span>:
+	    <span id="sw_s">00</span>:
+	    <span id="sw_ms">00</span>
+	    <br/>
+	    <br/>
+	    <input type="button" value="Start" id="sw_start" />
+	    <input type="button" value="Pause" id="sw_pause" />
+	    <input type="button" value="Stop"  id="sw_stop" />
+	    <input type="button" value="Reset" id="sw_reset" />
+	    <br/>
+	    <br/>
+	    <span id="sw_status">Idle</span>
+	</div>
+	
+	<div id="check_all_container" class="text-center"><button class="btn btn-default" onclick="checkAll(); isAllAnswered();">Check All</button></div>
+
+	<div class="container">
+	  	<div class="row">
+	    	<div class="col-sm-3">
+	      		Day 1
+	    	</div>
+	    	<div class="col-sm-3">
+	      		<input type="text" name="" />
+	    	</div>
+	    	<div class="col-sm-3">
+	      		<button>Check</button>
+	    	</div>
+	    	<div class="col-sm-3">
+	      		Result
+	    	</div>
+	  </div>
+	</div>
+
+	<script src="js/jquery.3.2.1.min.js"></script>
+	<script src="js/stopwatch.js"></script>
+	<script src="js/nihonggo_app.js"></script>
+
+</body>
+</html>

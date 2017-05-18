@@ -1,0 +1,53 @@
+body{
+	background-color: #E8FFF6;
+}
+
+.header{
+	text-align: center;
+}
+
+.row{
+	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	max-width: 900px;
+}
+
+.row:hover {
+    background-color: white;
+}
+
+.resultImg{
+	width: 25px;
+    height: 25px;
+}
+
+input[type="text"] {
+	width: 100%;
+}
+
+#check_all_container{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.text-center{
+	text-align: center;
+}
+
+#stop_watch_container{
+	border: 1px solid black;
+	background-color: white;
+	width: 200px;
+	padding: 0;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	position: fixed;
+	top: 0;
+	right: 0;
+}
+
+#sw_status{
+	color: green;
+}
