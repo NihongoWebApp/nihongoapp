@@ -49,22 +49,31 @@ var html = "";
 // eng_to_jap_set["Sunday"] = 'nichiyobi';
 
 /**JLPT N5**/
-eng_to_jap_set["Ah!"] = 'ah';
-eng_to_jap_set["to meet"] = 'au';
-eng_to_jap_set["blue"] = 'aoi';
-eng_to_jap_set["red"] = 'akai';
-eng_to_jap_set["light, bright"] = 'akarui';
-eng_to_jap_set["autmn, fall"] = 'aki';
-eng_to_jap_set["open"] = 'aku';
-eng_to_jap_set["to open"] = 'akeru';
-eng_to_jap_set["to give"] = 'ageru';
-eng_to_jap_set["morning"] = 'asa';
+// eng_to_jap_set["Ah!"] = 'ah';
+// eng_to_jap_set["to meet"] = 'au';
+// eng_to_jap_set["blue"] = 'aoi';
+// eng_to_jap_set["red"] = 'akai';
+// eng_to_jap_set["light, bright"] = 'akarui';
+// eng_to_jap_set["autmn, fall"] = 'aki';
+// eng_to_jap_set["open"] = 'aku';
+// eng_to_jap_set["to open"] = 'akeru';
+// eng_to_jap_set["to give"] = 'ageru';
+// eng_to_jap_set["morning"] = 'asa';
 
+
+$( document ).ready(function() {
+          console.log( "ready!" );
+          $.get("database.php", function(data, status){
+             eng_to_jap_set = $.parseJSON(data);
+             console.log(eng_to_jap_set);
+          });
+}); 
 
 //TODO: Comment if don't want to randomize
 for (var eng in eng_to_jap_set) {
 	randomizedKeyArray.push(eng);
 }
+
 shuffleArray(randomizedKeyArray);
 //End of Randomize
 

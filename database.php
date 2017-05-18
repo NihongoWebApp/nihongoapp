@@ -10,7 +10,6 @@
 	if ($conn->connect_error) {
    		die("Connection failed: " . $conn->connect_error);
 	} 
-	echo "Connected successfully";
 
 	$wordsArray = array();
 
@@ -26,33 +25,26 @@
 	    echo "0 results";
 	}
 	
-	$dave = "Hello!";
+	
+	$json_array = json_encode($wordsArray);
 
-	function getDave(){
-		global $dave;
-		return $dave;
-	}
+	echo $json_array;
 	
 	#printHashMap($wordsArray);
 	$conn->close();
 	
 
-	function getHashMap(){
-		global $wordsArray;
-		return $wordsArray;
-	}
+	// function getHashMap(){
+	// 	global $wordsArray;
+	// 	return $wordsArray;
+	// }
 
-	function printHashMap(){
-		global $wordsArray;
-		foreach ($wordsArray as $key => $value) {
-    		echo "English: $key; Nihongo: $value\n <br>";
-		}
-	}
+	// function printHashMap(){
+	// 	global $wordsArray;
+	// 	// foreach ($wordsArray as $key => $value) {
+ //  //   		echo "English: $key; Nihongo: $value\n <br>";
+	// 	// }
+	// 	echo $wordsArray;
+	// }
 	
 ?>
-
-
-<script>
-	console.log( '<?php printHashMap();?>' );
-	
-</script>
